@@ -150,11 +150,147 @@ function getImg() {
     }
 }
 
+//定义函数渲染页面数据并进行相关控件的绑定
+function full_goods_data() {
+    //渲染顶部标题
+    let nav_path = goodData.path;
+    nav_path.forEach(element => {
+        let atag = document.createElement("a");
+        atag.href = element.url;
+        atag.innerHTML = element.title;
+        let divtag = document.createElement("div");
+        divtag.classList.add("list-one");
+        divtag.append(atag);
+        let midnav = document.getElementsByClassName("mid-nav")[0];
+        midnav.append(divtag);
+    });
+}
+
+
+//点击对应搭配生成对应的价格
+function get_price() {
+    let colorLists = document.querySelectorAll(".color-list div");
+    let memeoryLists = document.querySelectorAll(".memory-list div");
+    let classifyLists = document.querySelectorAll(".classify-list div");
+    let wayLists = document.querySelectorAll(".way-list div");
+    let init_priceLists = document.querySelector(".price-box .first-title .price");
+    var init_price = init_priceLists.getElementsByTagName("span")[1];
+    var totalPrice = goodData.goodsDetail.price; //初始价格
+    init_price.innerHTML = goodData.goodsDetail.price;
+    let colorFlag = {
+        obj: colorLists[0],
+        index: 0
+    };
+    let memoryFlag = {
+        obj: memeoryLists[0],
+        index: 0
+    };
+    let classifyFlag = {
+        obj: classifyLists[0],
+        index: 0
+    };
+    let wayFlag = {
+        obj: wayLists[0],
+        index: 0
+    };
+    var priceLists = goodData.goodsDetail.crumbData; //搭配列表
+    colorLists.forEach((element, i) => {
+        console.log(i);
+        element.addEventListener("click", function (e) {
+            totalPrice -= priceLists[0].data[colorFlag.index].changePrice;
+            //点击当前元素，我们要把前一个选中边框去掉
+            colorFlag.obj.classList.remove("active-goods");
+            //然后指向当前点击的元素对象
+            colorFlag.obj = this;
+            //为当前点击的元素设置选中边框
+            colorFlag.obj.classList.add("active-goods");
+            colorFlag.index = i;
+            totalPrice += priceLists[0].data[colorFlag.index].changePrice;
+            console.log(totalPrice);
+            init_price.innerHTML = totalPrice;
+        })
+    });
+    memeoryLists.forEach((element, i) => {
+        console.log(i);
+        element.addEventListener("click", function (e) {
+            totalPrice -= priceLists[1].data[memoryFlag.index].changePrice;
+            //点击当前元素，我们要把前一个选中边框去掉
+            memoryFlag.obj.classList.remove("active-goods");
+            //然后指向当前点击的元素对象
+            memoryFlag.obj = this;
+            //为当前点击的元素设置选中边框
+            memoryFlag.obj.classList.add("active-goods");
+            memoryFlag.index = i;
+            totalPrice += priceLists[1].data[memoryFlag.index].changePrice;
+            console.log(totalPrice);
+            init_price.innerHTML = totalPrice;
+        })
+    });
+    classifyLists.forEach((element, i) => {
+        console.log(i);
+        element.addEventListener("click", function (e) {
+            totalPrice -= priceLists[2].data[classifyFlag.index].changePrice;
+            //点击当前元素，我们要把前一个选中边框去掉
+            classifyFlag.obj.classList.remove("active-goods");
+            //然后指向当前点击的元素对象
+            classifyFlag.obj = this;
+            //为当前点击的元素设置选中边框
+            classifyFlag.obj.classList.add("active-goods");
+            classifyFlag.index = i;
+            totalPrice += priceLists[2].data[classifyFlag.index].changePrice;
+            console.log(totalPrice);
+            init_price.innerHTML = totalPrice;
+        })
+    });
+    wayLists.forEach((element, i) => {
+        console.log(i);
+        element.addEventListener("click", function (e) {
+            totalPrice -= priceLists[3].data[wayFlag.index].changePrice;
+            //点击当前元素，我们要把前一个选中边框去掉
+            wayFlag.obj.classList.remove("active-goods");
+            //然后指向当前点击的元素对象
+            wayFlag.obj = this;
+            //为当前点击的元素设置选中边框
+            wayFlag.obj.classList.add("active-goods");
+            wayFlag.index = i;
+            totalPrice += priceLists[3].data[wayFlag.index].changePrice;
+            console.log(totalPrice);
+            init_price.innerHTML = totalPrice;
+        })
+    });
+}
+
+//购物车数量实现
+function get_membet() {
+    var inputEle = document.querySelector(".cart-box .number input");
+    var valueNum = Number(inputEle.value); //获取数量
+    console.log(typeof valueNum);
+    var addbtn = document.getElementById("add");
+    var subbtn = document.getElementById("sub");
+    addbtn.addEventListener("click", function (e) {
+        console.log(valueNum);
+        inputEle.value = ++valueNum;
+        // totalPrice *= valueNum;
+        // init_price.innerHTML = totalPrice;
+    })
+    subbtn.addEventListener("click", function (e) {
+        if (valueNum == 1) {
+            return false;
+        }
+        inputEle.value = --valueNum;
+        // totalPrice *= valueNum;
+        // init_price.innerHTML = totalPrice;
+    })
+}
+
 //定义主函数
 function main() {
     get_big_photo();
     list_index();
     getImg();
+    full_goods_data();
+    get_price();
+    get_membet();
 }
 
 //调用主函数

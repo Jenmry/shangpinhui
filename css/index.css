@@ -301,7 +301,7 @@ body {
   width: 100%;
 }
 .page-wrapper .mid-detail-wrapper .mid-detail .mid-goods-detail .left-wrapper .swipper-box .menu-list .active-img {
-  border: 1px solid #cc1122;
+  border: 1px solid #cc1122 !important;
 }
 .page-wrapper .mid-detail-wrapper .mid-detail .mid-goods-detail .left-wrapper .swipper-box .right-arrow {
   user-select: none;
@@ -448,6 +448,10 @@ body {
 }
 .page-wrapper .mid-detail-wrapper .mid-detail .mid-goods-detail .right-box .goods-category {
   padding: 10px 0;
+  user-select: none;
+}
+.page-wrapper .mid-detail-wrapper .mid-detail .mid-goods-detail .right-box .goods-category .active-goods {
+  border: 1.5px solid #cc1122 !important;
 }
 .page-wrapper .mid-detail-wrapper .mid-detail .mid-goods-detail .right-box .goods-category .title {
   margin-top: 0;
@@ -558,6 +562,7 @@ body {
   border-bottom: 1px solid #ddd;
   cursor: pointer;
   position: relative;
+  user-select: none;
 }
 .page-wrapper .mid-detail-wrapper .mid-detail .mid-goods-detail .right-box .cart-box .number .right-btn .add:hover {
   color: lightgreen;
@@ -573,6 +578,7 @@ body {
   background-color: #9acd32;
 }
 .page-wrapper .mid-detail-wrapper .mid-detail .mid-goods-detail .right-box .cart-box .number .right-btn .sub {
+  user-select: none;
   height: 18px;
   line-height: 18px;
   border-left: 1px solid #ddd;

@@ -428,7 +428,7 @@ body {
                                 }
                             }
                             .active-img{
-                                border: 1px solid #cc1122;
+                                border: 1px solid #cc1122 !important;
                             }
                         }
 
@@ -660,6 +660,10 @@ body {
                     //分类搭配
                     .goods-category {
                         padding: 10px 0;
+                        user-select: none;
+                        .active-goods{
+                            border: 1.5px solid #cc1122 !important;
+                        }
 
                         .title {
                             margin-top: 0;
@@ -788,6 +792,7 @@ body {
                                 border-style: none;
                                 text-align: center;
                                 font-weight: 600;
+
                             }
 
                             // 增加和减少按钮
@@ -806,6 +811,7 @@ body {
                                     border-bottom: 1px solid #ddd;
                                     cursor: pointer;
                                     position: relative;
+                                    user-select: none;
 
                                     &:hover {
                                         color: lightgreen;
@@ -826,6 +832,7 @@ body {
                                 }
 
                                 .sub {
+                                    user-select: none;
                                     height: 18px;
                                     line-height: 18px;
                                     border-left: 1px solid #ddd;
